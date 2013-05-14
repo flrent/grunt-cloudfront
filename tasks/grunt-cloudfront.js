@@ -32,6 +32,33 @@ module.exports = function(grunt) {
     });
     var CloudFront = new AWS.CloudFront();
 
+    if(!_.isUndefined(version)) {
+      grunt.log.writeln("Version number detected. Changing "+this.data.Paths.Items.length+" filenames.");
+      _.each(this.data.Paths.Items, function(file, i, files) {
+
+        var lastDot = file.lastIndexOf('.'),
+            extension = file.slice(lastDot,file.length),
+            fileName = file.slice(0, lastDot),
+            newFileName = fileName+"-"+version+extension;
+
+          grunt.log.writeln(fileName + " -> " + newFileName);
+      });
+    }
+
+    CloudFront.createInvalidation({
+      DistributionId:options.distributionId,
+      InvalidationBatch:this.data
+    }, function(err, data) {
+      if(err) {
+        grunt.log.error("Invalidation failed : "+err.message);
+        done(false);
+      }
+      else {
+        grunt.log.write("Invalidation succeeded. Please wait a few minutes.").ok();
+        console.log(data);
+        done();
+      }
+    });
     if(options.listDistributions) {
       CloudFront.listDistributions({},function(err, data) {
         if(err) {
@@ -60,33 +87,5 @@ module.exports = function(grunt) {
           }
       });
     }
-
-    if(!_.isUndefined(version)) {
-      grunt.log.writeln("Version number detected. Changing "+this.data.Paths.Items.length+" filenames.");
-      _.each(this.data.Paths.Items, function(file, i, files) {
-
-        var lastDot = file.lastIndexOf('.'),
-            extension = file.slice(lastDot,file.length),
-            fileName = file.slice(0, lastDot),
-            newFileName = fileName+"-"+version+extension;
-
-          grunt.log.writeln(fileName + " -> " + newFileName);
-      });
-    }
-
-    CloudFront.createInvalidation({
-        DistributionId:options.distributionId,
-        InvalidationBatch:this.data
-      }, function(err, data) {
-        if(err) {
-          grunt.log.error("Invalidation failed : "+err.message);
-          done(false);
-        }
-        else {
-          grunt.log.write("Invalidation succeeded. Please wait a few minutes.").ok();
-          console.log(data);
-          done();
-        }
-      });
   });
 };
