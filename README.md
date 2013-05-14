@@ -4,9 +4,9 @@ Grunt task for invalidating cache on Amazon AWS CloudFront with the official AWS
 
 ## Getting Started
 
-Install this grunt plugin next to your project's [grunt.js gruntfile][getting_started] with: `npm install grunt-cloudfront`
+Install this grunt plugin next to your project's grunt.js gruntfile with: `npm install grunt-cloudfront --save-dev`
 
-Then add this line to your project's `grunt.js` gruntfile:
+Then add this line to your project's `Gruntfile.js` gruntfile:
 
 ```javascript
 grunt.loadNpmTasks('grunt-cloudfront');
@@ -14,7 +14,7 @@ grunt.loadNpmTasks('grunt-cloudfront');
 
 ## Usage
 
-```
+```javascript
 // Project configuration.
 grunt.initConfig({
   cloudfront: {
@@ -26,7 +26,7 @@ grunt.initConfig({
       listDistributions:false, // if you want to see your distributions list in the console
       version:"1.0", // if you want to invalidate a specific version (file-1.0.js)
     },
-    invalidate: {
+    invalidate: { // this must be a valid CloudFront invalidation batch
       "Paths": {
         "Quantity": 1,
         "Items": [
@@ -40,10 +40,9 @@ grunt.initConfig({
 ```
 
 ## Release History
-* May 14, 2013 - 1.0.0 First release
+* May 14, 2013 - __1.0.0__ First release
 
 ## License
-
-Copyright (c) 2012 - PayrollHero.com
-Licensed under the MIT License
-http://www.payrollhero.com
+[Florent Lamoureux](http://twitter.com/flrent)  
+Licensed under the MIT license.  
+Copyright (c) 2013 - [http://www.payrollhero.com](PayrollHero.com)
