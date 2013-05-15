@@ -56,7 +56,23 @@ module.exports = function(grunt) {
       else {
         grunt.log.write("Invalidation succeeded. Please wait a few minutes.").ok();
         console.log(data);
-        done();
+        if(options.listInvalidations) {
+          CloudFront.listInvalidations({
+              DistributionId:options.distributionId
+            },
+            function(err, data) {
+              if(err) {
+                grunt.log.errorlns(util.inspect(err));
+              }
+              else {
+                grunt.log.writeln(util.inspect(data));
+              }
+              done();
+          });
+        }
+        else {
+          done();
+        }
       }
     });
     if(options.listDistributions) {
@@ -74,18 +90,6 @@ module.exports = function(grunt) {
         }
       });
     }
-    else if(options.listInvalidations) {
-      CloudFront.listInvalidations({
-          DistributionId:options.distributionId
-        },
-        function(err, data) {
-          if(err) {
-            grunt.log.errorlns(util.inspect(err));
-          }
-          else {
-            grunt.log.writeln(util.inspect(data));
-          }
-      });
-    }
+    
   });
 };
