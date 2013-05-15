@@ -2,7 +2,7 @@
 
 Grunt task for invalidating cache on Amazon AWS CloudFront with the official AWS SDK for node.js.
 This repo is different from other CloudFront task because it uses the official AWS node.js SDK.
-##  Started
+## Get Started
 
 Install this grunt plugin next to your project's grunt.js gruntfile with: `npm install grunt-cloudfront --save-dev`
 
