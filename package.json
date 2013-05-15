@@ -1,7 +1,8 @@
 {
   "name": "grunt-cloudfront",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "AWS CloudFront cache invalidating grunt task.",
+  "homepage": "https://github.com/payrollhero/grunt-cloudfront",
   "repository": {
     "type": "git",
     "url": "git://github.com/payrollhero/grunt-cloudfront.git"
@@ -13,12 +14,19 @@
     "cache",
     "invalidate"
   ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "peerDependencies": {
+    "grunt": "~0.4.1"
+  },
   "author": "Florent Lamoureux @flrent",
   "license": "MIT",
   "readmeFilename": "README.md",
   "devDependencies": {
     "grunt": "~0.4.1",
     "aws-sdk": "~1.0.0",
+    "moment": "~2.0.0",
     "underscore": "~1.4.4"
   }
 }
