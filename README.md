@@ -40,7 +40,8 @@ grunt.initConfig({
 ```
 
 ## Release History
-* May 14, 2013 - __1.0.0__ First release
+* February 27, 2014 - __0.1.1 Fix dependencies
+* May 14, 2013 - __0.1.0__ First release
 
 ## License
 [Florent Lamoureux](http://twitter.com/flrent)  
