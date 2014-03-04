@@ -23,7 +23,7 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('cloudfront', 'Cloudfront cache invalidating task', function() {
     var done = this.async(),
         options = this.options(),
-        version = options.version
+        version = options.version,
         data = _.omit(this.data, 'options');
 
     AWS.config.update({
