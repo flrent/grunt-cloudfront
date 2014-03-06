@@ -23,7 +23,8 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('cloudfront', 'Cloudfront cache invalidating task', function() {
     var done = this.async(),
         options = this.options(),
-        version = options.version;
+        version = options.version,
+        data = _.omit(this.data, 'options');
 
     AWS.config.update({
       region:options.region,
@@ -33,8 +34,8 @@ module.exports = function(grunt) {
     var CloudFront = new AWS.CloudFront();
 
     if(!_.isUndefined(version)) {
-      grunt.log.writeln("Version number detected. Changing "+this.data.Paths.Items.length+" filenames.");
-      _.each(this.data.Paths.Items, function(file, i, files) {
+      grunt.log.writeln("Version number detected. Changing "+data.Paths.Items.length+" filenames.");
+      _.each(data.Paths.Items, function(file, i, files) {
 
         var lastDot = file.lastIndexOf('.'),
             extension = file.slice(lastDot,file.length),
@@ -47,7 +48,7 @@ module.exports = function(grunt) {
 
     CloudFront.createInvalidation({
       DistributionId:options.distributionId,
-      InvalidationBatch:this.data
+      InvalidationBatch:data
     }, function(err, data) {
       if(err) {
         grunt.log.error("Invalidation failed : "+err.message);
@@ -90,6 +91,6 @@ module.exports = function(grunt) {
         }
       });
     }
-    
+
   });
 };
