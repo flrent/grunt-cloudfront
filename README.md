@@ -26,21 +26,32 @@ grunt.initConfig({
       listDistributions:false, // if you want to see your distributions list in the console
       version:"1.0", // if you want to invalidate a specific version (file-1.0.js)
     },
-    invalidate: { // this must be a valid CloudFront invalidation batch
-      "Paths": {
-        "Quantity": 1,
-        "Items": [
-            "/js/myfile.js"
-        ]
+    dev: {
+      options: {
+        distributionId: '** DEV KEY **'
       },
-      "CallerReference": moment().format() // use unique identifier for this invalidation
+      CallerReference: Date.now().toString(),
+      Paths: {
+        Quantity: 1,
+        Items: [ '/index.html' ]
+      }
+    live: {
+      options: {
+        distributionId: '** LIVE KEY **'
+      },
+      CallerReference: Date.now().toString(),
+      Paths: {
+        Quantity: 1,
+        Items: [ '/index.html' ]
+      }
     }
   }
 });
 ```
 
 ## Release History
-* February 27, 2014 - __0.1.1 Fix dependencies
+* March 10, 2014 - __0.2.0__ Add multi task option configuration (thanks @steve8708)
+* February 27, 2014 - __0.1.1__ Fix dependencies
 * May 14, 2013 - __0.1.0__ First release
 
 ## License
