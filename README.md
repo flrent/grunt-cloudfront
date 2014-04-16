@@ -49,6 +49,16 @@ grunt.initConfig({
 });
 ```
 
+### Credentials file
+The credential file should look like this:
+
+```json
+{
+  "accessKeyId": "ACCESS_KEY",
+  "secretAccessKey": "SECRET_ACCESS_KEY"
+}
+```
+
 ## Release History
 * March 10, 2014 - __0.2.0__ Add multi task option configuration (thanks @steve8708)
 * February 27, 2014 - __0.1.1__ Fix dependencies
