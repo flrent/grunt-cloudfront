@@ -24,7 +24,7 @@ grunt.initConfig({
       credentials:grunt.file.readJSON('path/to/aws/credentials.json'), // !!Load them from a gitignored file
       listInvalidations:true, // if you want to see the status of invalidations
       listDistributions:false, // if you want to see your distributions list in the console
-      version:"1.0", // if you want to invalidate a specific version (file-1.0.js)
+      version:"1.0" // if you want to invalidate a specific version (file-1.0.js)
     },
     dev: {
       options: {
@@ -34,7 +34,8 @@ grunt.initConfig({
       Paths: {
         Quantity: 1,
         Items: [ '/index.html' ]
-      }
+        }
+      },
     live: {
       options: {
         distributionId: '** LIVE KEY **'
