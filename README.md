@@ -34,7 +34,8 @@ grunt.initConfig({
       Paths: {
         Quantity: 1,
         Items: [ '/index.html' ]
-      }
+        }
+      },
     live: {
       options: {
         distributionId: '** LIVE KEY **'
