@@ -49,8 +49,16 @@ grunt.initConfig({
 });
 ```
 
-### Credentials file
-The credential file should look like this:
+### AWS Credentials
+You should store your AWS credentials outside of source control. They will be loaded from the following environment variables if available:
+
+```json
+AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY
+```
+
+
+Or you can store them in a git ignored credential file which looks like this:
 
 ```json
 {
