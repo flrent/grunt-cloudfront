@@ -28,8 +28,8 @@ module.exports = function(grunt) {
 
     AWS.config.update({
       region:options.region,
-      accessKeyId: options.credentials.accessKeyId,
-      secretAccessKey: options.credentials.secretAccessKey
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
     });
     var CloudFront = new AWS.CloudFront();
 
