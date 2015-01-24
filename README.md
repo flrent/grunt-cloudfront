@@ -69,6 +69,7 @@ Or you can store them in a git ignored credential file which looks like this:
 ```
 
 ## Release History
+* January 21, 2014 - __0.2.1__ Allow loading of AWS credentials from env
 * March 10, 2014 - __0.2.0__ Add multi task option configuration (thanks @steve8708)
 * February 27, 2014 - __0.1.1__ Fix dependencies
 * May 14, 2013 - __0.1.0__ First release
