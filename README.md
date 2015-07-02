@@ -50,6 +50,13 @@ grunt.initConfig({
 });
 ```
 
+### AWS Region
+You can store your AWS region in the following environment variable and it will be used if available:
+
+```json
+AWS_REGION
+```
+
 ### AWS Credentials
 You should store your AWS credentials outside of source control. They will be loaded from the following environment variables if available:
 
@@ -75,6 +82,6 @@ Or you can store them in a git ignored credential file which looks like this:
 * May 14, 2013 - __0.1.0__ First release
 
 ## License
-[Florent Lamoureux](http://twitter.com/flrent)  
-Licensed under the MIT license.  
+[Florent Lamoureux](http://twitter.com/flrent)
+Licensed under the MIT license.
 Copyright (c) 2013 - [http://www.payrollhero.com](PayrollHero.com)
