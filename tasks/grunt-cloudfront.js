@@ -16,7 +16,7 @@ module.exports = function(grunt) {
       _ = require("underscore");
 
   process.on('SIGINT', function() {
-    grunt.debug.writeln('').write('Shutting down the amazon Cloudfront task...').ok();
+    grunt.log.debug('Shutting down the amazon Cloudfront task...');
     process.exit();
   });
 
