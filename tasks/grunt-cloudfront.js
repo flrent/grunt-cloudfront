@@ -92,7 +92,7 @@ module.exports = function(grunt) {
         else {
           var distributions = data.Items;
           for(var i=0;i<distributions.length;i++) {
-            grunt.log.writeln(util.inspect(distributions[i]));
+            grunt.log.writeln(util.inspect(distributions[i], { depth: null }));
           }
           done();
         }
