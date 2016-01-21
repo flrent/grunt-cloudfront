@@ -25,7 +25,7 @@
   "readmeFilename": "README.md",
   "dependencies": {
     "grunt": "~0.4.1",
-    "aws-sdk": "~1.0.0",
+    "aws-sdk": "~2.0.0",
     "moment": "~2.0.0",
     "underscore": "~1.4.4"
   }
