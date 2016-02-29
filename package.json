@@ -1,11 +1,11 @@
 {
   "name": "grunt-cloudfront",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "AWS CloudFront cache invalidating grunt task.",
-  "homepage": "https://github.com/payrollhero/grunt-cloudfront",
+  "homepage": "https://github.com/flrent/grunt-cloudfront",
   "repository": {
     "type": "git",
-    "url": "git://github.com/payrollhero/grunt-cloudfront.git"
+    "url": "git://github.com/flrent/grunt-cloudfront.git"
   },
   "keywords": [
     "gruntplugin",
