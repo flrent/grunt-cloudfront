@@ -15,22 +15,28 @@ module.exports = function(grunt) {
       AWS = require('aws-sdk'),
       _ = require("underscore");
 
-  process.on('SIGINT', function() {
-    grunt.log.debug('Shutting down the amazon Cloudfront task...');
-    process.exit();
-  });
-
   grunt.registerMultiTask('cloudfront', 'Cloudfront cache invalidating task', function() {
-    var done = this.async(),
+    var creds,
+        done = this.async(),
         options = this.options(),
         version = options.version,
         data = _.omit(this.data, 'options');
 
+    if (options.awsProfile){
+      creds = new AWS.SharedIniFileCredentials({profile: options.awsProfile});
+    }else {
+      creds = {
+        accessKeyId: (process.env.AWS_ACCESS_KEY_ID || options.credentials.accessKeyId),
+        secretAccessKey: (process.env.AWS_SECRET_ACCESS_KEY || options.credentials.secretAccessKey)
+      };
+    }
+
+    AWS.config.credentials = creds;
+
     AWS.config.update({
-      region: options.region,
-      accessKeyId: (process.env.AWS_ACCESS_KEY_ID || options.credentials.accessKeyId),
-      secretAccessKey: (process.env.AWS_SECRET_ACCESS_KEY || options.credentials.secretAccessKey),
+      region: options.region
     });
+
     var CloudFront = new AWS.CloudFront();
 
     if(!_.isUndefined(version)) {
@@ -76,6 +82,7 @@ module.exports = function(grunt) {
         }
       }
     });
+
     if(options.listDistributions) {
       CloudFront.listDistributions({},function(err, data) {
         if(err) {
@@ -85,7 +92,7 @@ module.exports = function(grunt) {
         else {
           var distributions = data.Items;
           for(var i=0;i<distributions.length;i++) {
-            grunt.log.writeln(util.inspect(distributions[i]));
+            grunt.log.writeln(util.inspect(distributions[i], { depth: null }));
           }
           done();
         }

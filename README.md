@@ -21,7 +21,7 @@ grunt.initConfig({
     options: {
       region:'us-east-1', // your AWS region
       distributionId:"YOUR_DISTRIBUTION_ID", // DistributionID where files are stored
-      credentials:grunt.file.readJSON('path/to/aws/credentials.json'), // !!Load them from a gitignored file
+      awsProfile: 'default',
       listInvalidations:true, // if you want to see the status of invalidations
       listDistributions:false, // if you want to see your distributions list in the console
       version:"1.0" // if you want to invalidate a specific version (file-1.0.js)
@@ -51,7 +51,7 @@ grunt.initConfig({
 ```
 
 ### AWS Credentials
-You should store your AWS credentials outside of source control. They will be loaded from the following environment variables if available:
+If an `awsProfile` parameter is supplied, the aws-sdk will read credentials from that profile and use them for your invalidation job. If no awsProfile is supplied, credentials will be loaded from the following environment variables if available:
 
 ```json
 AWS_ACCESS_KEY_ID
@@ -59,13 +59,28 @@ AWS_SECRET_ACCESS_KEY
 ```
 
 
-Or you can store them in a git ignored credential file which looks like this:
+You can also store them in a git ignored credential file and pass them as options to the grunt job:
 
 ```json
 {
   "accessKeyId": "ACCESS_KEY",
   "secretAccessKey": "SECRET_ACCESS_KEY"
 }
+```
+
+Then in the job options:
+```javascript
+grunt.initConfig({
+  cloudfront: {
+    options: {
+      region:'us-east-1', // your AWS region
+      distributionId:"YOUR_DISTRIBUTION_ID", // DistributionID where files are stored
+      credentials:grunt.file.readJSON('path/to/aws/credentials.json'), // !!Load them from a gitignored file
+      listInvalidations:true,
+      listDistributions:false,
+      version:"1.0"
+    }
+  }
 ```
 
 ## Release History
