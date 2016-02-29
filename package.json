@@ -1,6 +1,6 @@
 {
   "name": "grunt-cloudfront",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "AWS CloudFront cache invalidating grunt task.",
   "homepage": "https://github.com/flrent/grunt-cloudfront",
   "repository": {
