@@ -24,6 +24,8 @@ module.exports = function(grunt) {
 
     if (options.awsProfile){
       creds = new AWS.SharedIniFileCredentials({profile: options.awsProfile});
+    }else if(options.instanceProfile) {
+      creds = new AWS.EC2MetadataCredentials();
     }else {
       creds = {
         accessKeyId: (process.env.AWS_ACCESS_KEY_ID || options.credentials.accessKeyId),
