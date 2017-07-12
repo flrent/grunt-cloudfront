@@ -58,6 +58,22 @@ AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
 ```
 
+If `instanceProfile` parameter is passed, the aws-sdk will be initialised using the instance's profile and use them for your invalidation job. You will need to ensure that the instance role has enough privileges(cloudfront access).
+
+Then in the jobs options:
+```javascript
+grunt.initConfig({
+  cloudfront: {
+    options: {
+      region:'us-east-1', // your AWS region
+      distributionId:"YOUR_DISTRIBUTION_ID", // DistributionID where files are stored
+      instanceProfile: true,
+      listInvalidations:true,
+      listDistributions:false,
+      version:"1.0"
+    }
+  }
+```
 
 You can also store them in a git ignored credential file and pass them as options to the grunt job:
 
